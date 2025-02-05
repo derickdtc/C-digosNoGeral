@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista03</title>
+</head>
+<body>
+    
+    <script>
+       /* EX2 const areaCirc= (r , pi=3.1415)=> r*r*pi
+        console.log(areaCirc(5))
+      EX3
+     const triOuNao= (l,ll,lll) =>{ if (l>ll+lll||ll>l+lll||lll>l+ll ) 
+       { return window.alert('Não é um triângulo.')
+     }else{
+        return window.alert('É triângulo')
+     }  
+
+     } 
+     console.log(triOuNao(1,2,3))
+     EX4
+    const definirTriangulo= (l,ll,lll)=>{
+      if (l>ll+lll||ll>l+lll||lll>l+ll) {
+        return window.alert('Não é um triângulo.')
+      } else if (l==ll && l==lll && ll==lll){   
+         return window.alert('O triângulo é equilátero')
+        } else if(l!=ll && l!=lll && ll!=lll){
+          return window.alert('O triângulo é escaleno')
+        }else {
+          return window.alert('O triângulo é isóceles ')
+        }
+      }
+    
+    console.log(definirTriangulo(3,4,2))
+    
+
+      const calcDistEntreDoisP= (x1,y1,x2,y2)=> Math.sqrt((x2-x1)**2+(y2-y1)**2)
+      console.log(calcDistEntreDoisP(6,2,3,6))
+      
+     const igualdadeValores=(a,b,c)=>{
+      if(a==b && b==c && a==c){
+        return window.alert('3 (todos iguais)')
+      }else if(a==b || b==c || a==c){
+        return window.alert('2 (apenas um diferente)')
+      }else{
+        return window.alert('Todos os valores são diferentess')
+      }
+     }
+     console.log(igualdadeValores(2,1,3))
+     
+    const showMinValue= (a,b,c)=>{
+      if(a<=b && a<=c){
+        return console.log(a)
+      }else if(b<a && b<=c){
+        return console.log(b)
+      }else{
+        return console.log(c)
+      }
+    } 
+    console.log(showMinValue(6,8,9))
+    
+   const elevarPot= (a,n)=> a**n
+    console.log(elevarPot(5,4))
+    
+      const calcExclusiveOr= (a,b)=> (a||b)&& !(a&&b);
+      const  valueA= true;
+      const valueB= false; 
+      console.log(calcExclusiveOr(valueB, valueA))
+      
+     const citacao= (n , n2)=> `${n2},${n[0]}` 
+     const nome= "Derick"
+     const sobrenome= "Teles"
+     const refNome= citacao(nome,sobrenome)
+     console.log(refNome)
+     
+    const valorMedio3Valores= (a,b,c)=>{
+      const media= (a+b+c)/3 
+      if(a>media && b>media || b>media && c>media || a>media && c>media){
+        return window.alert('Tem dois valores acima da média')
+      }else if(a==media && b==media && c==media){
+        return window.alert('Não há nenhum valor acima da média')
+      } else{
+        return window.alert('Há um valor maior que a média')
+      }
+    }
+    console.log(valorMedio3Valores(4,9,2))
+  
+    
+    const menorEMaiorRaiz= (a,b,c)=>{
+    const delta= b**2-4*a*c;
+    const raizUm= (-b + Math.sqrt(delta))/(2*a);
+    const raizDois= (-b - Math.sqrt(delta))/(2*a);
+      if (delta>0 && raizUm>raizDois) {
+        return window.alert('A menor raíz é '+raizDois+' e a maior raiz é '+raizUm +'')
+      } else if(delta>0 && raizUm<raizDois) {
+        return window.alert('A maior raíz é '+raizDois+' e a menor raiz é '+raizUm +'')
+      } else if(delta===0){
+        const raizUnica= -b/(2*a);
+        return window.alert( `Só existe uma raíz, ${raizUnica}`);
+      }else{
+        return window.alert('A equação não possui raíz')
+      }
+    }
+    console.log(menorEMaiorRaiz(1,2,5))
+
+     const calcVelocidade= (s,t, s0=500)=>(s-s0)/t;
+      
+    console.log(calcVelocidade(1000,2))
+    
+    const numberToString = (n)=> {
+  switch (n) {
+    case 0:
+      return "zero";
+    case 1:
+      return "um";
+    case 2:
+      return "dois";
+    case 3:
+      return "três";
+    case 4:
+      return "quatro";
+    case 5:
+      return "cinco";
+    case 6:
+      return "seis";
+    case 7:
+      return "sete";
+    case 8:
+      return "oito";
+    case 9:
+      return "nove";
+    default:
+      return "Algarismo inválido";
+  }
+    }
+    console.log(numberToString(4))
+  */
+    // Versão "curried" com notação arrow.
+const subcurried = (a) => (b) => (c) => a * (b - c)
+console.log(((a) => (b) => (c) => a * (b - c))(4)(3)(1))
+
+// Reuso através da aplicação parcial da função.
+
+//Ex. função subtrair dois números
+const subtrair = subcurried(1)
+console.log(subtrair(5)(8))
+
+//Ex. função dobro de um número
+const dobro = subcurried(-2)(0)
+console.log(dobro(10))
+
+//Ex. função negativo de um número
+const negativo = subcurried(1)(0)
+console.log(negativo(11))
+    
+    </script>
+</body>
+</html>

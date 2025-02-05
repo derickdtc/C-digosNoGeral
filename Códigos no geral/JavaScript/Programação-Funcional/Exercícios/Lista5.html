@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segunda Unidade de PF</title>
+</head>
+<body>
+    <script>
+        //EX2
+    const elementos=['Ana','Bia','Marcela','Carlos','Maria','Manoel','Marcos','Paulo']
+    const encontrarElemento= (lista,elemento)=>{
+        if (elemento>=0 && elemento<=lista.length) {
+            const elementoAchado= lista[elemento]
+           return console.log(elementoAchado)
+        } else {
+            return 'Número da posição inválido'
+        }
+    }
+    console.log(encontrarElemento(elementos,10))
+    //EX3
+    
+    const numerodeE= (lista)=> lista.length
+    console.log(numerodeE(elementos))
+
+   //EX4
+   
+   const elementos2=['Carlos','Maria','Manoel','Marcos','Paulo']
+   const contarElementosComuns = (lista1, lista2) => {
+    return lista1.reduce((contador, elemento) => {
+        if (lista2.includes(elemento)) {
+            return contador + 1;
+        }
+        return contador;
+    }, 0);
+};
+   console.log(contarElementosComuns(elementos,elementos2))
+   
+//EX5
+// Função que verifica se um número é múltiplo de 3 ou 5
+// Cria um array de números de 1 a 999
+// Filtra os números que são múltiplos de 3 ou 5
+// Usa a função reduce para somar os múltiplos
+ // Exibe a soma dos múltiplos de 3 e 5 menores que 1000
+const multiploDe3Ou5= num => num % 3===0 || num % 5===0;
+const numeros= Array.from({ length: 1000 }, (_ , index) => index + 1);
+const multiplos= numeros.filter(multiploDe3Ou5);
+const soma= multiplos.reduce((acc,num)=>acc+num, 0);
+console.log(numeros);
+
+//EX6
+function quadradoDaSoma(n){
+    const somaDeN= Array.from({length:n},(_ , index)=> index+1).reduce((acc,index)=>acc+index)
+    return Math.pow(somaDeN,2)
+} 
+function somaDosQuadrados(n) {
+    return Array.from({length:n},(_,i)=>(i+1)**2).reduce((acc,i)=>acc+i)
+}
+function resultDaDif(n) {
+   return quadradoDaSoma(n)-somaDosQuadrados(n)
+}
+console.log(resultDaDif(10))
+
+//EX 7
+function primosMenoresQ(n) {
+    const listaPrimos= Array.from({length:n},(_,i)=>i+1).filter(primoOuN)
+    return '2,3,5,7,'+listaPrimos+''    
+}   
+function primoOuN(x) {
+if (x%2==0||x%3==0||x%5==0||x%7==0) {
+        return false
+} else if (x<7){
+    return false
+}else {
+    return true 
+}
+}
+console.log(primosMenoresQ(100))
+
+
+//EX8
+function primeiroI(num) {
+    const numero= num.toString()
+    return numero[0]
+}
+console.log(primeiroI(44446765))
+
+//EX9 
+const units = ['','one','two','three','four','five','six','seven','eight','nine']
+const specials=['','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
+const hundreds= ['','one hundred','two hundred','three hundred','four hundred','five hundred','six hundred','seven hundred','eight hundred','nine hundred']
+const dozens=['','ten','twenty','thirty','forty','fifty','sixty','seventy','eight','ninety']
+function fullNumber(num) {
+    
+    if (n==0) {
+        return 'zero'
+    } else if(n>=1&& n<10) {
+      switch (n) {
+        case 1:
+            return units[1]
+            break;
+            case 2:
+            return units[2]
+            break;
+            case 3:
+            return units[3]
+            break;
+            case 4:
+            return units[4]
+            break;
+            case 5:
+            return units[5]
+            break;
+            case 6:
+            return units[6]
+            break;
+            case 7:
+            return units[7]
+            break;
+        default:
+            break;
+      }               
+
+    }
+}
+//console.log(fullNumber(2))
+//EX10
+const lista= [1,2,3,4,5,6,7] 
+function replicarI4x(list) {
+    return list.flatMap(x=>Array.from({length:4},()=>x))
+}
+console.log(replicarI4x(lista))
+
+    </script>
+</body>
+</html>

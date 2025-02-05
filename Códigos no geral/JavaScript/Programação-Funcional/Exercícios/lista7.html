@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista7</title>
+</head>
+<body>
+    <script src="utils.js"></script>
+    <script>
+        const l1= [1,2,3,4,5,6,7]
+        const busca=(lista,elemento,acc=0)=>{
+            const [x,...xs]= lista; 
+            if (indef(x)) {
+                return -1
+            } else if(elemento===x) {
+                return acc 
+            }else{
+                return busca(xs,elemento,acc+1)
+            }
+        }
+        console.log(busca(l1,7))
+        const maior= (lista)=>{
+            const [x,y,...xs]=lista; 
+            if (indef(y)) {
+                return x
+            } else {
+                return (x>y)? maior([x,...xs]):maior([y,...xs])
+            }
+        }
+        const txt= 'javascript'
+        console.log(txt.slice(1) )
+        const reduceL=(acc)=>(lista)=>{
+            const [x,...xs]=lista;
+            if (lista.length==0) {
+                return ''
+            } else {
+                return acc + reduceL(acc)(x+acc)
+            }
+        }
+        const exemplo = [1,2,3,4]
+        console.log(reduceL(0)(exemplo))
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    
+
+    <script type="text/babel">
+        class Animal{
+            constructor(cor , tamanho ,peso){
+                this.cor = cor
+                 this.tamanho = tamanho
+                 this.peso = peso
+            }
+            dormir(){
+                console.log('dormir')
+            }
+            
+        }
+       
+        class Passaro extends Animal {
+            constructor(bico, cor , tamanho , peso){
+                super(cor , tamanho , peso)
+                
+                this.bico = bico
+            }
+           
+            voar(){
+                console.log('voar')
+            }
+        }
+
+        class Papagaio extends Passaro{
+            constructor(sabeFalar, bico, cor , tamanho , peso){
+                super(bico , cor , tamanho , peso)
+                this.sabeFalar = sabeFalar
+
+                 
+                }
+                falar(sabeFalar){
+                    if (sabeFalar = true) {
+                        console.log("falando")
+                    } else {
+                        console.log("Não sei falar")
+
+                    }
+            }
+        }
+        class Avestruz extends Passaro{
+            constructor(){
+                super()
+            }
+            enterrarCabeça(){
+                console.log("Enterrando a cabeça")
+            }
+            voar(){
+                console.log("Avestruz não voa")
+            }
+
+        }
+        
+        let papagaio = new Papagaio(true , "grande", "vermelho", 20 ,25.5)
+        let aves = new Avestruz()
+        //console.log(pa)
+        aves.voar()
+       
+    </script>
+</body>
+</html>

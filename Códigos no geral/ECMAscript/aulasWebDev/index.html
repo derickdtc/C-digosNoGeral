@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    
+    <script type="text/babel">
+        /*
+        let parOuImpar = (x)=> {
+            if (x%2 ==0 ) {
+                console.log(`O numero é par`)
+            }else{
+                console.log(`O numero é impar`)
+
+            }
+        }  
+
+        console.log(parOuImpar(10))*/
+
+
+
+        //Abstração
+        /*
+        class ContaBancaria{
+            agencia;
+            numeroConta;
+            saldo;
+            limite;
+            constructor(){
+                this.agencia= 1075
+                this.numeroConta = 835122
+                this.saldo= 50.6
+                this.limite= 250
+            }
+        depositar(valorDeposito){
+            this.saldo+= valorDeposito
+        }
+        sacar(valorSaque){
+            this.saldo = this.saldo - valorSaque
+        }
+        consultarSaldo(){
+            return this.saldo 
+        }
+        }
+       
+       let conta = new ContaBancaria();
+        console.log(conta.consultarSaldo())
+        conta.depositar(450)
+        console.log(conta.consultarSaldo())
+        conta.sacar(350)
+        console.log(conta.consultarSaldo(50))
+
+        let cadeiras = Array()
+
+        cadeiras[0]= Array()
+        cadeiras[0]['qtdPernas']= 4
+        cadeiras[0]['giratoria']= false 
+        cadeiras[0]['cor']= 'amarela'
+
+        cadeiras[1]= Array()
+        cadeiras[1]['qtdPernas']= 1
+        cadeiras[1]['giratoria']= true
+        cadeiras[1]['cor']= 'vermelha'
+
+        console.log(cadeiras)
+
+        //POO
+        class Cadeiras{
+            constructor(qtdPernas,giratoria,cor){
+                this.qtdPernas = qtdPernas
+                this.giratoria = giratoria
+                this.cor= cor
+            }
+        
+            girarCadeira(){
+                if (this.giratoria === true) {
+                    console.log("Girou")
+                }else{
+                    console.log("não é giratória")
+
+                }
+            }
+        }
+        let cadeira1 = new Cadeiras(4 , true , "amarela")
+        cadeira1.girarCadeira()
+
+        cadeiras.push(cadeira1)
+        console.log(cadeiras)*/
+
+        class Tv{
+            constructor(){
+                this._relacaoCanais = Array(2,4,5,7,10)
+                this._canalAtivo =  5
+                this._volume =5
+            }
+            get canalAtivo(){
+                return this._canalAtivo
+            }
+            set canalAtivo(valor){
+                this._canalAtivo = valor
+            }
+            set volume(valor){
+                this._volume= valor
+            }
+        }
+
+        let tv = new Tv()
+        tv.canalAtivo = 10
+        console.log(tv.canalAtivo)
+
+    </script>
+    
+</body>
+</html>

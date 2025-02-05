@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    
+
+    <script type="text/babel">
+        /*
+        // objeto literal
+        let a1 = {
+            modelo : "Airbus a380",
+            cor : "Branco",
+            levantarVoo(){console.log('voando')}
+        }
+
+        //função construtora
+        let AviaoF = function(){
+            this.modelo = "Boeing 747",
+            this.cor = "amarelo",
+            this.levantarVoo =() => {console.log('voando')}
+        }
+        let a2 = new AviaoF()
+        //classe
+        class AviaoC{
+            constructor(){
+             this.modelo = "Embraer"
+            this.cor = "Violeta"   
+            }
+
+            levantarVoo(){console.log('voando')}
+
+        }
+        let a3 = new AviaoC()
+
+        //Herança no prototype
+
+        Object.prototype.attr50 = 'z'
+        let animal = {attr1 : 'a'}
+        let vertebrado = { __proto__: animal , attr2 : 'b'}
+        let ave = {__proto__ : vertebrado, attr3 : 'c'}
+
+        console.log(ave.attr2, ave.attr1 , attr50)
+
+        //Contexto spread
+
+        let tituloArtigo = 'Como utilizar o operador rest/spread'
+        console.log(tituloArtigo)
+        console.log(...tituloArtigo)
+        console.log([...tituloArtigo])
+
+        // spread com arrays
+        let listaCursos1 = ['Node Js e Mongo DB' , 'ES6 , Typesript e Angular4']
+        let listaCursos2 = ['Multiplataforma Android' , 'Introdução ao gnuLinux']
+        let listaCursosCompleta = ['Web completo' , 'Android completo' , ...listaCursos1, ...listaCursos2]
+        //console.log(listaCursosCompleta)
+    
+        //spread com objetos
+        let pessoa = {nome : 'João' , idade : 28}
+        let clone = {endereço: 'Rua ABC' , ...pessoa}
+        console.log(clone)*/
+
+        //Contexto rest
+        /*
+        function soma(...params) {
+            let resultado = 0
+            console.log(params)
+
+            params.forEach(v => resultado += v)
+            return resultado
+        }
+
+        console.log(soma(7,7,4,2,-8,9,-12))
+        function mult(m,...params) {
+            let resultado =0
+            console.log(m)
+            console.log(params)
+            params.forEach( v => resultado += (m*v))
+            return resultado
+
+        }
+        console.log(mult(2,4,5,-3,-1,5))*/
+
+        //Destruturação 
+
+        /*let frutas = ['Abacaxi' , 'Uva' , 'Mamão' , 'Laranja']    
+        let [a, x, , d, e =' limão']= frutas
+        console.log([ a, x, , d, e])
+
+        let coisas = [['Abacaxi' , 'Uva' , 'Mamão' , 'Laranja'] ,['Maria' , "Lucas", "Haskell"]]
+        let [[],[ , , z]] = coisas
+        console.log([[],[ , , z]])*/
+
+        //Desestruturação com objetos
+        let produto = {
+            descricao : 'Notebook',
+            preco: '7000',
+            detalhes : {
+                fabricante : 'Lenovo',
+                modelo : 'IdeaPad'
+            }
+        }
+        let {descricao : d , preco: p , des = 5} = produto
+        console.log(d , p , des)
+
+        let {detalhes  : {fabricante : f , modelo : m}} = produto
+
+        //console.log(f , m)
+
+        //Desestruturação com funções
+        let arr = [ 10,20,30,40]
+        function teste([a ,b , , c]) {
+          console.log(a,b,c)
+        }
+        //teste(arr)
+
+        let obj = {
+            a: 10,
+            b: 20,
+            c: 30,
+            d: 40
+        }
+        function teste2({a : x ,b , z =100}) {
+            console.log(x,b , z)
+
+        }
+        //teste2(obj)
+        
+        //Destruturando e usando rest
+        //let [a ,...x] = arr
+        //console.log(a , x)
+        let {a , ...y} = obj
+        console.log(a , y)
+
+    
+    </script>
+</body>
+</html>

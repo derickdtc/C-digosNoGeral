@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Função como Retorno</title>
+</head>
+<body>
+    <script>
+        /*Ex1
+        const multi= (a,b)=> a*b 
+        const areaRet= (l,ll)=> Number(multi(l,ll))
+        console.log(areaRet(2,4))
+        EX2
+        const exp= (e)=> (base)=> base**e
+        const quadrado= exp(2)
+        const multi= (a,b)=> a*b
+        const areaCirc= (r)=> multi(quadrado(r),3.1415)
+        console.log(areaCirc(5))
+        EX3
+       const text2= 'É triângulo'
+       const text1= 'Não é triângulo'
+       const proporcao= (a,b,c)=>{
+        if (a>b+c|| b>a+c || c>a+b) {
+            return text1
+        } else {
+            return text2
+        }
+       } 
+       
+       console.log(proporcao(5,2,3))
+       
+       const igualdadeValores=(a,b,c)=>{
+      if(a==b && b==c && a==c){
+        return window.alert('3 (todos iguais)')
+      }else if(a==b || b==c || a==c){
+        return window.alert('2 (apenas um diferente)')
+      }else{
+        return window.alert('Todos os valores são diferentess')
+      }
+     }
+     const result= igualdadeValores(3,4,4)
+     console.log(result)
+        */
+       const fSoma=(f)=>(x)=>(y)=>(z)=>f(x)+f(y)+f(z)
+       console.log(fSoma((n)=>n<0?n*-1:n)(-7)(2)(1)); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#tabuleiro{
+    width: 670px;
+    height: 570px;
+    border: 1px solid red;
+    margin: 5px auto;
+    background-color: aqua;
+
+}
+.linha{
+    /*border: 2px solid white;*/
+    text-align: center;
+    height:50px;
+    
+    
+} 
+
+#linha1 {
+    margin-top: 12px;
+}  
+
+.unidade{
+    border: 1px solid palevioletred;
+    margin: 1px ;
+    background-color: aqua;
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    
+    /*position: relative;*/
+}
+.navio{
+    background-color: violet;
+} 
+.navioPC{
+    background-color: brown;
+}
+.acertou{
+    background-color: green;
+}
+.errou{
+    background-color: red;
+}

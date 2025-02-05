@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Teste</title>
+</head>
+	<style type="text/css">
+		button{
+			width: 65px;
+			height: 20px;
+			text-align: center;
+		}
+	</style>
+<body>	
+		<input type="text" name="valor" id="valor" >		
+		<button type="submit" onclick="add()" >Adicionar</button>			
+	
+		<button type="button" onclick="ordenar()" >Ordenar</button>
+
+		<script type="text/javascript">
+		/*
+		const log= (str)=> console.log(str)
+		var lista_coisas = Array()
+		lista_coisas['Frutas']= Array()
+		lista_coisas['Frutas'][0]= 'Banana'
+		lista_coisas['Pessoas']= ['Derick','João','Darius']
+		const lista_n=[0,1,4,7,55,33,1,2,9,8,455]
+		log(lista_n.sort((a,b)=>a-b))
+		*/
+		var objetos=Array('Cadeira','Mouse','Teclado')	
+
+		function add() {			// body...
+			var valor=document.getElementById('valor').value
+			if (valor=='') {
+				return window.alert('Informe valor válido')
+			} else {
+				if (objetos.includes(valor)) {
+				return window.alert('Objeto já adicionado')
+
+				} else {
+					 objetos.push(valor)
+					document.getElementById('valor').value=''
+					console.log(objetos)
+
+				}
+			}
+		}
+		function ordenar(){
+			return console.log(objetos.sort())
+		}
+
+		
+		</script>
+
+</body>
+</html>		

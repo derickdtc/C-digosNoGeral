@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    
+
+    <script type="text/babel">
+        /*
+        class Produto{
+            constructor(descricao , preco){
+                this.descricao = descricao
+                this.preco = preco
+            }
+            verDescricao(){
+                console.log(`O produto é um(a) ${this.descricao} e custa ${this.preco}`)
+            }
+        }
+        let pro = new Produto("PC" , 3540)
+        pro.verDescricao()
+
+        let produtoLiteral = {
+            descricao: "Sistema",
+            preco : 2200,
+            verDescricao : function () {
+                console.log(`O produto é um(a) ${this.descricao} e custa ${this.preco}`)
+
+            }
+
+        }
+        produtoLiteral.verDescricao()
+
+
+
+        //-----------------------------
+        let nome = "Mateus"
+        let idade = 23
+        let sexo = "Masculino"
+        let profissao = "Dentista"
+        let pessoa = {
+            nome,
+            idade,
+            sexo,
+            profissao,
+            exibitResumo : function () {
+             console.log(`Sou ${this.nome} , tenho ${this.idade}, meu sexo é ${this.sexo} e trabalho como ${this.profissao}`)
+
+            }
+        }
+        console.log(pessoa)*/
+
+        /*pessoa.nome = "Anna"
+        pessoa.profissao = "Fisioterapeuta"
+        pessoa.hobbie = "Ler"*/
+        
+        let Carro = function() {
+            this.cor = "prata"
+            this.modelo = "Ferrari"
+            this.velocidadeAtual = 0
+            this.velocidadeMaxima = 180
+
+            this.acelerar = function () {
+                let velocidade = this.getVelocidadeAtual() + 50
+                if (velocidade<= this.velocidadeMaxima) {
+                    this.setVelocidadeAtual(velocidade)
+
+                }else{
+                    this.setVelocidadeAtual(this.velocidadeMaxima)
+                }
+           }
+           this.getVelocidadeAtual = function () {
+                return this.velocidadeAtual
+           }
+           this.setVelocidadeAtual = function (valor) {
+                this.velocidadeAtual = valor
+           }
+        }
+        let carro = new Carro()
+        /*
+        console.log(carro.velocidadeAtual)
+        carro.acelerar()
+        console.log(carro.velocidadeAtual)
+        carro.acelerar()
+        console.log(carro.velocidadeAtual)
+        carro.acelerar()
+        console.log(carro.velocidadeAtual)
+        carro.acelerar()
+        console.log(carro.velocidadeAtual)*/
+
+        let Carro2 = function() {
+            var velocidadeMaxima = 180
+
+            this.cor = "prata"
+            this.modelo = "Ferrari"
+            this.velocidadeAtual = 0
+            //this.velocidadeMaxima = 180
+
+            this.acelerar = function () {
+                let velocidade = this.getVelocidadeAtual() + 50
+                if (velocidade<= velocidadeMaxima) {
+                    this.setVelocidadeAtual(velocidade)
+
+                }else{
+                    this.setVelocidadeAtual(velocidadeMaxima)
+                }
+           }
+           this.getVelocidadeAtual = function () {
+                return this.velocidadeAtual
+           }
+           this.setVelocidadeAtual = function (valor) {
+                this.velocidadeAtual = valor
+           }
+        }
+        let carro2 = new Carro()
+        console.log(carro2.velocidadeAtual)
+        carro2.acelerar()
+        console.log(carro2.velocidadeAtual)
+        carro2.acelerar()
+        console.log(carro2.velocidadeAtual)
+        carro2.acelerar()
+        console.log(carro2.velocidadeAtual)
+        carro2.acelerar()
+        console.log(carro2.velocidadeAtual)
+        carro2.acelerar()
+        console.log(carro2.velocidadeAtual)
+
+
+        //Funções factory
+        let Bicicleta1 = {
+            cor : "Branca",
+            marcha : "única",
+            aro : 15,
+            pedalar(){ console.log("Pedalando")}
+
+        }
+
+        console.log(Bicicleta1)
+        let BicicletaFactory = function (cor , marcha , aro) {
+            return {
+                cor : cor,
+                marcha : marcha,
+                 aro : aro,
+                pedalar(){ console.log("Pedalando")}
+
+            }
+        }
+        let bike1 = BicicletaFactory("BRANCA", 18 , 26)
+        console.log(bike1)
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
