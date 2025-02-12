@@ -198,12 +198,14 @@ void gerarSaida(const string &nomeArquivo) {
     saida.close();
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     // Para acelerar a I/O
     std::ios_base::sync_with_stdio(false);
     
-    lerEntrada("input.txt");
-    gerarSaida("output.txt");
+    //lerEntrada("input.txt");
+    //gerarSaida("output.txt");
+    lerEntrada(argv[1]);
+    gerarSaida(argv[2]);
     
     delete[] veiculos;
     delete[] pacotes;
