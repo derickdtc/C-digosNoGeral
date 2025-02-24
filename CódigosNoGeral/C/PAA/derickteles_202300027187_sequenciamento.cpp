@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <limits> // Necessário para numeric_limits<streamsize>::max()
 
 using namespace std;
 
@@ -110,78 +111,117 @@ void mergeSort(Doenca arr[], int left, int right) {
 
 // --- Função principal ---
 int main(int argc, char* argv[]) {
-     //ifstream inputFile("input.txt");
-     //ofstream outputFile("output.txt");
-     ifstream inputFile(argv[1]);
-     ofstream outputFile(argv[2]);
-     if (!inputFile || !outputFile) {
-         cout << "Erro ao abrir arquivo!" << endl;
-         return 1;
-     }
-     
-     int tamSubcadeia, numDoencas;
-     inputFile >> tamSubcadeia;
-     inputFile.ignore(); 
-     
-     char dna[MAX_TAM_DNA];
-     inputFile.getline(dna, MAX_TAM_DNA);
-     
-     inputFile >> numDoencas;
-     inputFile.ignore();
-     
-     // Aloca dinamicamente o array de doenças
-     Doenca* doencas = new Doenca[numDoencas];
-     
-     for (int i = 0; i < numDoencas; i++) {
-         inputFile >> doencas[i].codigo >> doencas[i].numGenes;
-         for (int j = 0; j < doencas[i].numGenes; j++) {
-             inputFile >> doencas[i].genes[j];
-         }
-     }
-     
-     double threshold = 0.8; // Critério: 80% das subcadeias devem ser encontradas
-     // Para cada doença, processa cada gene
-     for (int i = 0; i < numDoencas; i++) {
-         int genesDetectados = 0;
-         for (int j = 0; j < doencas[i].numGenes; j++) {
-             int geneLen = strlen(doencas[i].genes[j]);
-             // Se o gene é menor que o tamanho mínimo, ignora-o
-             if (geneLen < tamSubcadeia)
-                 continue;
-             
-             int totalSubcadeias = geneLen - tamSubcadeia + 1;
-             int subcadeiasEncontradas = 0;
-             
-             // Para cada posição do gene, extrai uma subcadeia de tamanho 'tamSubcadeia'
-             for (int k = 0; k < totalSubcadeias; k++) {
-                 char subcadeia[MAX_TAM_GENE];
-                 strncpy(subcadeia, doencas[i].genes[j] + k, tamSubcadeia);
-                 subcadeia[tamSubcadeia] = '\0';
-                 if (kmpSearch(dna, subcadeia))
-                     subcadeiasEncontradas++;
-             }
-             
-             double frac = (double) subcadeiasEncontradas / totalSubcadeias;
-             if (frac >= threshold)
-                 genesDetectados++;
-         }
-         doencas[i].compatibilidade = ((double) genesDetectados / doencas[i].numGenes) * 100.0;
-     }
-     
-     // Ordena as doenças por compatibilidade (ordem decrescente)
-     mergeSort(doencas, 0, numDoencas - 1);
-     
-     // Escreve a saída no arquivo, arredondando a compatibilidade
-     for (int i = 0; i < numDoencas; i++) {
-         int comp = (int)(doencas[i].compatibilidade + 0.5);
-         outputFile << doencas[i].codigo << " ->" << comp << "%" << endl;
-     }
-     
-     // Libera a memória alocada e fecha os arquivos
-     delete [] doencas;
-     inputFile.close();
-     outputFile.close();
-     
-     return 0;
- }
- 
+    cout << "DEBUG: Início do programa." << endl;
+    
+    ifstream inputFile;
+    ofstream outputFile;
+    
+    // Se os argumentos não forem passados, usa os nomes padrão.
+    if (argc < 3) {
+        cout << "DEBUG: Usando 'input.txt' e 'output.txt'." << endl;
+        inputFile.open("input.txt");
+        outputFile.open("output.txt");
+    } else {
+        cout << "DEBUG: Usando argv[1] e argv[2]." << endl;
+        inputFile.open(argv[1]);
+        outputFile.open(argv[2]);
+    }
+    
+    if (!inputFile || !outputFile) {
+        cout << "Erro ao abrir arquivo!" << endl;
+        return 1;
+    }
+    cout << "DEBUG: Arquivos abertos com sucesso." << endl;
+    
+    // Lê o tamanho mínimo da subcadeia
+    int tamSubcadeia;
+    if (!(inputFile >> tamSubcadeia)) {
+        cerr << "Erro ao ler tamSubcadeia." << endl;
+        return 1;
+    }
+    // Ignora apenas até o fim da linha
+    inputFile.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    // Lê a sequência de DNA
+    char dna[MAX_TAM_DNA];
+    if (!inputFile.getline(dna, sizeof(dna))) {
+        cerr << "Erro ao ler a sequência de DNA." << endl;
+        return 1;
+    }
+    cout << "DEBUG: DNA lido: " << dna << endl;
+    
+    // Lê o número de doenças
+    int numDoencas;
+    if (!(inputFile >> numDoencas)) {
+        cerr << "Erro ao ler numDoencas." << endl;
+        return 1;
+    }
+    // Ignora até o fim da linha
+    inputFile.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    // Se numDoencas for zero ou negativo, não há o que processar
+    if (numDoencas <= 0) {
+        cerr << "Valor inválido para numDoencas: " << numDoencas << endl;
+        return 1;
+    }
+    cout << "DEBUG: numDoencas lido: " << numDoencas << endl;
+    
+    // Aloca dinamicamente o array de doenças
+    Doenca* doencas = new Doenca[numDoencas];
+    
+    for (int i = 0; i < numDoencas; i++) {
+        inputFile >> doencas[i].codigo >> doencas[i].numGenes;
+        cout << "DEBUG: Lendo doença " << doencas[i].codigo << " com " << doencas[i].numGenes << " genes." << endl;
+        for (int j = 0; j < doencas[i].numGenes; j++) {
+            inputFile >> doencas[i].genes[j];
+            cout << "DEBUG: Gene " << j+1 << " lido: " << doencas[i].genes[j] << endl;
+        }
+    }
+    
+    double threshold = 0.8; // Critério: 80% das subcadeias devem ser encontradas
+    // Para cada doença, processa cada gene
+    for (int i = 0; i < numDoencas; i++) {
+        int genesDetectados = 0;
+        for (int j = 0; j < doencas[i].numGenes; j++) {
+            int geneLen = strlen(doencas[i].genes[j]);
+            if (geneLen < tamSubcadeia)
+                continue;
+            
+            int totalSubcadeias = geneLen - tamSubcadeia + 1;
+            int subcadeiasEncontradas = 0;
+            
+            for (int k = 0; k < totalSubcadeias; k++) {
+                char subcadeia[MAX_TAM_GENE];
+                strncpy(subcadeia, doencas[i].genes[j] + k, tamSubcadeia);
+                subcadeia[tamSubcadeia] = '\0';
+                if (kmpSearch(dna, subcadeia))
+                    subcadeiasEncontradas++;
+            }
+            
+            double frac = (double) subcadeiasEncontradas / totalSubcadeias;
+            if (frac >= threshold)
+                genesDetectados++;
+        }
+        doencas[i].compatibilidade = ((double) genesDetectados / doencas[i].numGenes) * 100.0;
+        cout << "DEBUG: Doença " << doencas[i].codigo << " compatibilidade calculada: " 
+             << doencas[i].compatibilidade << endl;
+    }
+    
+    // Ordena as doenças por compatibilidade (ordem decrescente)
+    mergeSort(doencas, 0, numDoencas - 1);
+    cout << "DEBUG: Ordenação concluída." << endl;
+    
+    // Escreve a saída no arquivo, arredondando a compatibilidade
+    for (int i = 0; i < numDoencas; i++) {
+        int comp = (int)(doencas[i].compatibilidade + 0.5);
+        outputFile << doencas[i].codigo << " ->" << comp << "%" << endl;
+        cout << "DEBUG: Escrevendo: " << doencas[i].codigo << " ->" << comp << "%" << endl;
+    }
+    
+    delete [] doencas;
+    inputFile.close();
+    outputFile.close();
+    
+    cout << "DEBUG: Programa finalizado com sucesso." << endl;
+    return 0;
+}
