@@ -8,7 +8,7 @@ using namespace std;
 // Limites ajustáveis conforme a necessidade
 #define MAX_DOENCAS 1000
 #define MAX_GENES 50
-#define MAX_TAM_DNA 10000
+#define MAX_TAM_DNA 50000
 #define MAX_TAM_GENE 101
 
 // Estrutura que armazena os dados de uma doença.
